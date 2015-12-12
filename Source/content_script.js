@@ -1,4 +1,14 @@
 walk(document.body);
+document.title = buttify(document.title);
+
+// Causes issues with some in-page text editors
+/*var observer = new MutationObserver(function(mutations) {
+	mutations.reduce(function(acc, mutation){
+		Array.prototype.push.apply(acc, mutation.addedNodes);
+		return acc;
+	}, []).forEach(walk);
+});
+observer.observe(document.body, {childList: true, subtree: true});*/
 
 function walk(node) 
 {
@@ -22,7 +32,7 @@ function walk(node)
 			break;
 
 		case 3: // Text node
-            if(node.parentElement.tagName.toLowerCase() != "script") {
+            if(node.parentElement != null && node.parentElement.tagName.toLowerCase() != "script" && node.parentElement.tagName.toLowerCase() != "style" && node.parentElement.tagName.toLowerCase() != "textarea") {
                 handleText(node);
             }
 			break;
@@ -30,35 +40,47 @@ function walk(node)
 }
 
 function handleText(textNode) {
-	var v = textNode.nodeValue;
+	textNode.nodeValue = buttify(textNode.nodeValue);
+}
 
-  // Deal with the easy case
-  v = v.replace(/\b(T|t)he (C|c)loud/g, function(match, p1, p2, offset, string) {
-    // t - 7 = m
-    // c - 1 = b
-    m = String.fromCharCode(p1.charCodeAt(0) - 7);
-    b = String.fromCharCode(p2.charCodeAt(0) - 1);
-    return m + "y " + b + "utt";
-  });
+function buttify(text) {
+	// Deal with the easy case
+	text = text.replace(/\b(t)he (c)loud/gi, function(match, p1, p2, offset, string) {
+		// t - 7 = m
+		// c - 1 = b
+		m = String.fromCharCode(p1.charCodeAt(0) - 7);
+		b = String.fromCharCode(p2.charCodeAt(0) - 1);
+		return m + "y " + b + "utt";
+	});
 
-  // Deal with private clouds
-  v = v.replace(/\b(P|p)rivate (C|c)loud/g, function(match, p1, p2, offset, string) {
-    // c - 1 = b
-    b = String.fromCharCode(p2.charCodeAt(0) - 1);
-    return b + "utt";
-  });
-  // Get the corner cases
-  if(v.match(/cloud/i)) {
-    // If we're not talking about weather
-    if(v.match(/PaaS|SaaS|IaaS|computing|data|storage|cluster|distributed|server|hosting|provider|grid|enterprise|provision|apps|hardware|software|/i)) {
-      v = v.replace(/(C|c)loud/gi, function(match, p1, offset, string) {
-        // c - 1 = b
-        b = String.fromCharCode(p1.charCodeAt(0) - 1);
-        return b + "utt";
-      });
-    }
-  }
-	textNode.nodeValue = v;
+	// Deal with private clouds
+	text = text.replace(/\b(p)rivate (c)loud/gi, function(match, p1, p2, offset, string) {
+		// p + 9 = y
+		// c - 1 = b
+		y = String.fromCharCode(p1.charCodeAt(0) + 9);
+		b = String.fromCharCode(p2.charCodeAt(0) - 1);
+		return y + "our " + b + "utt";
+	});
+
+	// Deal with the rest of the clouds
+	if(text.match(/cloud/i)) {
+		// If we're not talking about weather
+		// We probably don't need this check as it no longer replaces textarea contents
+		/*if(text.match(/PaaS|SaaS|IaaS|computing|data|storage|cluster|distributed|server|hosting|provider|grid|enterprise|provision|apps|hardware|software|resources/i)) {
+			text = text.replace(/(c)loud/gi, function(match, p1, offset, string) {
+				// c - 1 = b
+				b = String.fromCharCode(p1.charCodeAt(0) - 1);
+				return b + "utt";
+			});
+		}*/
+		text = text.replace(/(c)loud/gi, function(match, p1, offset, string) {
+			// c - 1 = b
+			b = String.fromCharCode(p1.charCodeAt(0) - 1);
+			return b + "utt";
+		});
+	}
+	
+	return text;
 }
 
 
