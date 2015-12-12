@@ -3,8 +3,6 @@ Cloud To Butt Plus
 
 Chrome extension that replaces occurrences of 'the cloud' with 'my butt', and other amusing cloud-related substitutions.
 
-[Direct download of crx file](https://github.com/hank/cloud-to-butt/blob/master/CloudToButt.crx?raw=true)
-
 Screenshot Gallery
 ------------------
 
@@ -13,7 +11,8 @@ http://www.flickr.com/groups/cloud-to-butt/
 Installation
 ------------
 
-In Chrome, choose Window > Extensions.  Drag CloudToButt.crx into the page that appears.
+Grab the extension from the Chrome Web Store
+https://chrome.google.com/webstore/detail/cloud-to-butt-redux/mghonbmkhoeammefiikcjdjaikniefnk
 
 Safari Version
 --------------
