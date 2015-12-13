@@ -8,6 +8,9 @@
 	[
 		{
 			"matches": ["*://*/*"],
+			"exclude_matches": [
+				"*://titlecapitalization.com/*"
+			],
 			"js": ["content_script.js"],
 			"all_frames": true
 		}

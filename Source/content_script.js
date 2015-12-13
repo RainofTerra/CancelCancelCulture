@@ -2,13 +2,13 @@ walk(document.body);
 document.title = buttify(document.title);
 
 // Causes issues with some in-page text editors
-/*var observer = new MutationObserver(function(mutations) {
+var observer = new MutationObserver(function(mutations) {
 	mutations.reduce(function(acc, mutation){
 		Array.prototype.push.apply(acc, mutation.addedNodes);
 		return acc;
 	}, []).forEach(walk);
 });
-observer.observe(document.body, {childList: true, subtree: true});*/
+observer.observe(document.body, {childList: true, subtree: true});
 
 function walk(node) 
 {
