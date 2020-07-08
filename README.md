@@ -1,25 +1,14 @@
-Cloud To Butt Plus
-=============
+Cancel Cancel Culture
+=====================
 
-Chrome extension that replaces occurrences of 'the cloud' with 'my butt', and other amusing cloud-related substitutions.
-
-Screenshot Gallery
-------------------
-
-http://www.flickr.com/groups/cloud-to-butt/
+Chrome extension that replaces occurrences of 'cancel culture' with a more accurate phrase.
 
 Installation
 ------------
 
-Grab the extension from the Chrome Web Store
-https://chrome.google.com/webstore/detail/cloud-to-butt-redux/mghonbmkhoeammefiikcjdjaikniefnk
+Credits
+------------
 
-Safari Version
---------------
+Forked from & Inspired by Cloud to Butt Plus: https://github.com/Techjar/cloud-to-butt
 
-Can be found here: https://github.com/logancollins/cloud-to-butt-safari
-
-Firefox Version
----------------
-
-Can be found here: https://github.com/DaveRandom/cloud-to-butt-mozilla
+Inspired by this tweet: https://twitter.com/caraesten/status/1280374252135305216
